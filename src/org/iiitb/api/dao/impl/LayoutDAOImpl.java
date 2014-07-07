@@ -34,6 +34,12 @@ public class LayoutDAOImpl implements LayoutDAO
 	private static final String UPDATE_LAST_LOGGED_ON = "update user "
 			+ "set last_logged_on=NOW() " + "where user_id=?";
 
+	private static final String ADD_NEWS_QUERY=
+			"insert into news(name,details) values(?,?);";
+	
+	private static final String REMOVE_NEWS_QUERY=
+			"delete from news where name=?;";
+	
 	@Override
 	public List<NewsItem> getAllNews(Connection connection) throws SQLException
 	{
@@ -97,6 +103,24 @@ public class LayoutDAOImpl implements LayoutDAO
 		PreparedStatement ps = connection
 				.prepareStatement(UPDATE_LAST_LOGGED_ON);
 		ps.setInt(1, userId);
+		ps.executeUpdate();
+	}
+
+	@Override
+	public void addNews(Connection connection, String name, String details) throws SQLException
+	{
+		PreparedStatement ps=connection.prepareStatement(ADD_NEWS_QUERY);
+		ps.setString(1, name);
+		ps.setString(2, details);
+		ps.executeUpdate();
+	}
+
+	@Override
+	public void removeNews(Connection connection, String name)
+			throws SQLException
+	{
+		PreparedStatement ps=connection.prepareStatement(REMOVE_NEWS_QUERY);
+		ps.setString(1, name);
 		ps.executeUpdate();
 	}
 
