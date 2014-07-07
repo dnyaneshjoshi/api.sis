@@ -3,7 +3,7 @@ package org.iiitb.api.dao;
 import java.sql.Connection;
 import java.util.List;
 
-import org.iiitb.api.syllabus.SyllabusInfo;
+import org.iiitb.api.model.SyllabusInfo;
 
 public interface SyllabusDAO {
 	

@@ -19,7 +19,7 @@ import org.codehaus.jettison.json.JSONObject;
 
 import org.iiitb.api.dao.StudentDAO;
 import org.iiitb.api.dao.impl.StudentDAOImpl;
-import org.iiitb.model.StudentInfo;
+import org.iiitb.api.model.StudentInfo;
 
 @Path("/friends")
 public class FriendsService

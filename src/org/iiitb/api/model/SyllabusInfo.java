@@ -1,4 +1,4 @@
-package org.iiitb.api.syllabus;
+package org.iiitb.api.model;
 
 /**
  * 

@@ -7,7 +7,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import org.iiitb.api.dao.ResultDAO;
-import org.iiitb.api.grades.GradeInfo;
+import org.iiitb.api.model.GradeInfo;
 import org.iiitb.util.ConnectionPool;
 
 import java.sql.PreparedStatement;

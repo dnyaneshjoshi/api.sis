@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.iiitb.api.dao.SyllabusDAO;
-import org.iiitb.api.syllabus.SyllabusInfo;
+import org.iiitb.api.model.SyllabusInfo;
 import org.iiitb.util.ConnectionPool;
 
 public class SyllabusDAOImpl implements SyllabusDAO {

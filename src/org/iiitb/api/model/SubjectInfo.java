@@ -1,4 +1,4 @@
-package org.iiitb.api.subjects;
+package org.iiitb.api.model;
 
 /**
  * Subject Info

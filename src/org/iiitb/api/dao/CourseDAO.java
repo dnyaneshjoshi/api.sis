@@ -3,7 +3,7 @@ package org.iiitb.api.dao;
 import java.sql.Connection;
 import java.util.List;
 
-import org.iiitb.api.subjects.SubjectInfo;
+import org.iiitb.api.model.SubjectInfo;
 
 public interface CourseDAO {
 

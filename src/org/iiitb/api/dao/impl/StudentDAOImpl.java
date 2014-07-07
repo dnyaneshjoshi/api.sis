@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.iiitb.api.dao.StudentDAO;
-import org.iiitb.model.StudentInfo;
+import org.iiitb.api.model.StudentInfo;
 import org.iiitb.util.ConnectionPool;
 import org.iiitb.util.Constants;
 

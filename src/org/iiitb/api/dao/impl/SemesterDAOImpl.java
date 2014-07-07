@@ -5,7 +5,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import org.iiitb.api.dao.SemesterDAO;
-import org.iiitb.api.syllabus.SyllabusInfo;
+import org.iiitb.api.model.SyllabusInfo;
 import org.iiitb.util.ConnectionPool;
 
 import java.sql.PreparedStatement;

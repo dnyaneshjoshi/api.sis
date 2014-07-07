@@ -1,7 +1,7 @@
 /**
  * 
  */
-package org.iiitb.api.grades;
+package org.iiitb.api.model;
 
 /**
  * @author kempa

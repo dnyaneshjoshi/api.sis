@@ -15,7 +15,7 @@ import java.util.List;
 import java.text.ParseException;
 
 import org.iiitb.api.dao.CourseDAO;
-import org.iiitb.api.subjects.SubjectInfo;
+import org.iiitb.api.model.SubjectInfo;
 import org.iiitb.util.ConnectionPool;
 
 

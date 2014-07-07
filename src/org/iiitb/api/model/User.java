@@ -1,4 +1,4 @@
-package org.iiitb.model;
+package org.iiitb.api.model;
 
 import java.io.InputStream;
 import java.util.List;

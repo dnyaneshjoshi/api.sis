@@ -2,7 +2,7 @@ package org.iiitb.api.dao;
 
 import java.util.List;
 
-import org.iiitb.model.StudentInfo;
+import org.iiitb.api.model.StudentInfo;
 
 /**
  * @author prashanth

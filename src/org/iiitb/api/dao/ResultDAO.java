@@ -7,7 +7,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
-import org.iiitb.api.grades.GradeInfo;
+import org.iiitb.api.model.GradeInfo;
 
 /**
  * @author kempa
