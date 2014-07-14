@@ -8,8 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.iiitb.api.dao.LayoutDAO;
-import org.iiitb.model.layout.AnnouncementsItem;
-import org.iiitb.model.layout.NewsItem;
+import org.iiitb.api.model.AnnouncementsItem;
+import org.iiitb.api.model.NewsItem;
 
 public class LayoutDAOImpl implements LayoutDAO
 {

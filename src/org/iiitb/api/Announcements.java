@@ -12,8 +12,8 @@ import javax.ws.rs.core.MediaType;
 
 import org.iiitb.api.dao.LayoutDAO;
 import org.iiitb.api.dao.impl.LayoutDAOImpl;
-import org.iiitb.model.layout.AnnouncementsItem;
-import org.iiitb.model.layout.NewsItem;
+import org.iiitb.api.model.AnnouncementsItem;
+import org.iiitb.api.model.NewsItem;
 import org.iiitb.util.ConnectionPool;
 
 import com.google.gson.Gson;
@@ -33,21 +33,5 @@ public class Announcements
 		List<AnnouncementsItem> l=layoutDAO.getAnnouncements(cn, Integer.parseInt(id));
 		ConnectionPool.freeConnection(cn);
 		return gson.toJson(l);
-	}
-
-	@GET
-	@Produces(MediaType.TEXT_XML)
-	@Path("users/{id}")
-	public String sayXMLHello(@PathParam("id") String id) throws SQLException
-	{
-		return getAnnouncements(id);
-	}
-	
-	@GET
-	@Produces(MediaType.TEXT_HTML)
-	@Path("users/{id}")
-	public String sayHtmlHello(@PathParam("id") String id) throws SQLException
-	{
-		return getAnnouncements(id);
 	}
 }

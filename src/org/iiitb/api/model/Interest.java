@@ -1,4 +1,4 @@
-package org.iiitb.model.layout;
+package org.iiitb.api.model;
 
 public class Interest
 {

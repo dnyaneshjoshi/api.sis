@@ -4,8 +4,8 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
-import org.iiitb.model.layout.AnnouncementsItem;
-import org.iiitb.model.layout.NewsItem;
+import org.iiitb.api.model.AnnouncementsItem;
+import org.iiitb.api.model.NewsItem;
 
 public interface LayoutDAO
 {

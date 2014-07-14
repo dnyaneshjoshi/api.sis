@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.iiitb.api.dao.InterestDAO;
-import org.iiitb.model.layout.Interest;
+import org.iiitb.api.model.Interest;
 
 public class InterestDAOImpl implements InterestDAO
 {
@@ -20,6 +20,9 @@ public class InterestDAOImpl implements InterestDAO
 	
 	private static final String ADD_INTEREST_QUERY=
 			"insert into interest(name, details) values(?, ?);";
+	
+	private static final String DELETE_INTEREST_QUERY=
+			"delete from interest where name=?;";
 	
 	@Override
 	public List<Interest> getInterests(Connection cn, int studentId) throws SQLException
@@ -57,5 +60,14 @@ public class InterestDAOImpl implements InterestDAO
 		p.setString(1, i.getName());
 		p.setString(2, i.getDetails());
 		p.executeUpdate();
+	}
+
+	@Override
+	public void deleteInterest(Connection cn, String name) throws SQLException {
+		// TODO Auto-generated method stub
+		PreparedStatement ps=cn.prepareStatement(DELETE_INTEREST_QUERY);
+		ps.setString(1, name);
+		ps.executeUpdate();
+		ps.close();
 	}
 }

@@ -24,41 +24,54 @@ import org.iiitb.util.ConnectionPool;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-@Path("/news")
-public class News
+@Path("/interests")
+public class Interests
 {
 	@GET
-	@Produces(MediaType.APPLICATION_JSON)
-	public String getAllNews() throws SQLException
+	@Produces({MediaType.APPLICATION_JSON})
+	public String getAllInterests() throws SQLException
 	{
-		Gson gson=new GsonBuilder().create();
 		Connection cn=ConnectionPool.getConnection();
-		LayoutDAO layoutDAO=new LayoutDAOImpl();
-		List<NewsItem> l=layoutDAO.getAllNews(cn);
+		InterestDAO interestDAO=new InterestDAOImpl();
+		List<Interest> r=interestDAO.getAllInterests(cn);
 		ConnectionPool.freeConnection(cn);
-		return gson.toJson(l);
+		Gson gson=new GsonBuilder().create();
+		return gson.toJson(r);
+	}
+	
+	@GET
+	@Path("/users/{userId}")
+	@Produces({MediaType.APPLICATION_JSON})
+	public String getInterests(@PathParam("userId") String userId) throws SQLException
+	{
+		Connection cn=ConnectionPool.getConnection();
+		InterestDAO interestDAO=new InterestDAOImpl();
+		List<Interest> r=interestDAO.getInterests(cn, Integer.parseInt(userId));
+		ConnectionPool.freeConnection(cn);
+		Gson gson=new GsonBuilder().create();
+		return gson.toJson(r);
 	}
 	
 	@POST
 	@Path("/add")
 	@Consumes({MediaType.APPLICATION_FORM_URLENCODED, MediaType.APPLICATION_JSON})
-	public void addNewsItem(String newsItemJson) throws SQLException
+	public void addInterest(String interestJson) throws SQLException
 	{
 		Gson gson=new GsonBuilder().create();
-		NewsItem newsItem=gson.fromJson(newsItemJson, NewsItem.class);
+		Interest interest=gson.fromJson(interestJson, Interest.class);
 		Connection cn=ConnectionPool.getConnection();
-		LayoutDAO layoutDAO=new LayoutDAOImpl();
-		layoutDAO.addNews(cn, newsItem.getName(), newsItem.getDetails());
+		InterestDAO interestDAO=new InterestDAOImpl();
+		interestDAO.addInterest(cn, interest);
 		ConnectionPool.freeConnection(cn);
 	}
 	
 	@DELETE
-	@Path("/delete/{newsItemName}")
-	public void deleteNewsItem(@PathParam("newsItemName") String newsItemName) throws SQLException
+	@Path("/delete/{interestName}")
+	public void deleteInterest(@PathParam("interestName") String interestName) throws SQLException
 	{
 		Connection cn=ConnectionPool.getConnection();
-		LayoutDAO layoutDAO=new LayoutDAOImpl();
-		layoutDAO.removeNews(cn, newsItemName);
+		InterestDAO interestDAO=new InterestDAOImpl();
+		interestDAO.deleteInterest(cn, interestName);
 		ConnectionPool.freeConnection(cn);
 	}
 }
