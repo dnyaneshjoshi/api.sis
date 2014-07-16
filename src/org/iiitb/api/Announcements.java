@@ -4,7 +4,9 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
+import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -33,5 +35,19 @@ public class Announcements
 		List<AnnouncementsItem> l=layoutDAO.getAnnouncements(cn, Integer.parseInt(id));
 		ConnectionPool.freeConnection(cn);
 		return gson.toJson(l);
+	}
+	
+	@POST
+	@Path("/add")
+	@Consumes({MediaType.APPLICATION_FORM_URLENCODED, MediaType.APPLICATION_JSON})
+	public void addAnnouncement(String announcementJson) throws SQLException
+	{
+		Gson gson=new GsonBuilder().create();
+		AnnouncementsItem announcementsItem=gson.fromJson(announcementJson, AnnouncementsItem.class);
+		Connection cn=ConnectionPool.getConnection();
+		LayoutDAO layoutDAO=new LayoutDAOImpl();
+		layoutDAO.addAnnouncement(cn, announcementsItem.getName(),
+				announcementsItem.getDetails(), announcementsItem.getInterestId());
+		ConnectionPool.freeConnection(cn);
 	}
 }

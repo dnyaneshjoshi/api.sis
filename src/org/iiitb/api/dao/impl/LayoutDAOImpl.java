@@ -40,6 +40,12 @@ public class LayoutDAOImpl implements LayoutDAO
 	private static final String REMOVE_NEWS_QUERY=
 			"delete from news where name=?;";
 	
+	private static final String ADD_ANNOUNCEMENT_QUERY=
+			"insert into announcement(name,details) values(?,?);";
+	
+	private static final String ADD_ANNOUNCEMENT_INTEREST_QUERY=
+			"insert into announcement_interest(interest_id, announcement_id) values(?, (select max(announcement_id) from announcement));";
+	
 	@Override
 	public List<NewsItem> getAllNews(Connection connection) throws SQLException
 	{
@@ -122,6 +128,25 @@ public class LayoutDAOImpl implements LayoutDAO
 		PreparedStatement ps=connection.prepareStatement(REMOVE_NEWS_QUERY);
 		ps.setString(1, name);
 		ps.executeUpdate();
+	}
+
+	@Override
+	public void addAnnouncement(Connection connection, String name,
+			String details, int interestId) throws SQLException {
+		// TODO Auto-generated method stub
+		PreparedStatement preStmt=connection.prepareStatement(ADD_ANNOUNCEMENT_QUERY);
+		preStmt.setString(1, name);
+		preStmt.setString(2, details);
+		
+		if (preStmt.executeUpdate() > 0)
+		{
+			PreparedStatement p=connection.prepareStatement(ADD_ANNOUNCEMENT_INTEREST_QUERY);
+			p.setInt(1, interestId);
+			p.executeUpdate();
+			p.close();
+		}
+		
+		preStmt.close();
 	}
 
 }

@@ -15,4 +15,5 @@ public interface LayoutDAO
 	public void setLastLoggedOn(Connection connection, int userId) throws SQLException;
 	public void addNews(Connection connection, String name, String details) throws SQLException;
 	public void removeNews(Connection connection, String name) throws SQLException;
+	public void addAnnouncement(Connection connection, String name, String details, int interestId) throws SQLException;
 }

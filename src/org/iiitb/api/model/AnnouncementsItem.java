@@ -4,6 +4,14 @@ public class AnnouncementsItem
 {
 	private String name;
 	private String details;
+	private int interestId;
+	
+	public AnnouncementsItem(String name, String details, int interestId)
+	{
+		this.name=name;
+		this.details=details;
+		this.interestId=interestId;
+	}
 	
 	public AnnouncementsItem(String name, String details)
 	{
@@ -22,5 +30,13 @@ public class AnnouncementsItem
 	}
 	public void setDetails(String details) {
 		this.details = details;
+	}
+
+	public int getInterestId() {
+		return interestId;
+	}
+
+	public void setInterestId(int interestId) {
+		this.interestId = interestId;
 	}
 }
