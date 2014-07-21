@@ -12,12 +12,10 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
-import org.iiitb.api.dao.InterestDAO;
 import org.iiitb.api.dao.LayoutDAO;
-import org.iiitb.api.dao.impl.InterestDAOImpl;
 import org.iiitb.api.dao.impl.LayoutDAOImpl;
-import org.iiitb.api.model.Interest;
 import org.iiitb.api.model.NewsItem;
 import org.iiitb.util.ConnectionPool;
 
@@ -54,11 +52,14 @@ public class News
 	
 	@DELETE
 	@Path("/delete/{newsItemName}")
-	public void deleteNewsItem(@PathParam("newsItemName") String newsItemName) throws SQLException
+	public Response deleteNewsItem(@PathParam("newsItemName") String newsItemName) throws SQLException
 	{
+		int statusCode=500;
 		Connection cn=ConnectionPool.getConnection();
 		LayoutDAO layoutDAO=new LayoutDAOImpl();
-		layoutDAO.removeNews(cn, newsItemName);
+		if(layoutDAO.removeNews(cn, newsItemName))
+			statusCode=200;
 		ConnectionPool.freeConnection(cn);
+		return Response.status(statusCode).build();
 	}
 }

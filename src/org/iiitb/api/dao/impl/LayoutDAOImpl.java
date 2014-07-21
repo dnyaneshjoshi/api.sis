@@ -122,12 +122,15 @@ public class LayoutDAOImpl implements LayoutDAO
 	}
 
 	@Override
-	public void removeNews(Connection connection, String name)
+	public boolean removeNews(Connection connection, String name)
 			throws SQLException
 	{
 		PreparedStatement ps=connection.prepareStatement(REMOVE_NEWS_QUERY);
 		ps.setString(1, name);
-		ps.executeUpdate();
+		if(ps.executeUpdate()>0)
+			return true;
+		else
+			return false;
 	}
 
 	@Override
